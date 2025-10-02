@@ -2,7 +2,8 @@
 <html lang="da">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Lås zoom/side-scroll på mobil -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>Johanna & Joachim – Bryllup</title>
 
   <!-- Fonts -->
@@ -20,15 +21,18 @@
     <a href="#info">Info</a>
     <a href="#wishlist">Ønskeliste</a>
     <a href="#toastmaster">Taler</a>
-    <a href="#addresses">Adresser</a>
   </nav>
 
-  <!-- HERO (uændret) -->
+  <!-- HERO -->
   <header class="hero" id="top">
     <canvas id="hearts" aria-hidden="true"></canvas>
     <div class="hero-inner">
       <h1 class="brand">Johanna & Joachim</h1>
+
+      <!-- Større billede -->
       <img class="hero-img" src="images/invitation.PNG" alt="Johanna & Joachim – invitation" />
+
+      <!-- Countdown (strip uden bokse) -->
       <section class="countdown-strip" id="countdown">
         <div class="count-item"><span class="num" id="days">0</span><small>Dage</small></div>
         <div class="sep" aria-hidden="true">•</div>
@@ -38,60 +42,46 @@
         <div class="sep" aria-hidden="true">•</div>
         <div class="count-item"><span class="num" id="seconds">0</span><small>Sek</small></div>
       </section>
+
       <a class="scroll-cue" href="#info" aria-label="Scroll videre">▾</a>
     </div>
     <div class="hero-gradient"></div>
   </header>
 
   <main>
-    <!-- Praktisk information (nyt, luftigt layout) -->
+    <!-- Praktisk information (inkl. kort-links) -->
     <section class="section" id="info" data-reveal>
       <h2 class="ornament">Praktisk information</h2>
       <div class="info-grid">
         <div class="info-item">
           <h3>Vielse</h3>
-          <p>Christianskirken, Aarhus N</p>
-          <p>Søndag d. 10. januar 2026 kl. 13.00</p>
+          <p>Christianskirken</p>
+          <p>kl. 13.00</p>
+          <p><a class="link" target="_blank" rel="noopener" href="https://maps.google.com?q=Christianskirken Aarhus">Se på kort</a></p>
         </div>
         <div class="info-item">
-          <h3>Fest</h3>
-          <p>Varna Palæet, Aarhus C</p>
-          <p>Efter vielsen – velkomst og middag</p>
+          <h3>Fest og Reception</h3>
+          <p>Varna Palæet</p>
+          <p>kl. 15.00</p>
+          <p><a class="link" target="_blank" rel="noopener" href="https://maps.google.com?q=Varna Palæet Aarhus">Se på kort</a></p>
         </div>
       </div>
     </section>
 
-    <!-- Ønskeliste (let CTA) -->
+    <!-- Ønskeliste -->
     <section class="section" id="wishlist" data-reveal>
       <h2 class="ornament">Ønskeliste</h2>
-      <p>   </p>
+      <p> </p>
       <a class="button" href="https://onskeskyen.dk/liste/DIT-LINK" target="_blank" rel="noopener">Se ønskelisten</a>
     </section>
 
-    <!-- Toastmaster (chip/pill) -->
+    <!-- Toastmaster -->
     <section class="section" id="toastmaster" data-reveal>
       <h2 class="ornament">Taler & underholdning</h2>
       <p>Ønsker du at holde tale eller lave indslag, så kontakt venligst vores toastmaster:</p>
       <p class="chip">
-        Jakob Sommer Kiel – <a href="tel:+45 xx xx xx xx">xx xx xx xx</a>
+        Jakob Sommer Kiel – <a href="tel:+45xxxxxxxx">xx xx xx xx</a>
       </p>
-    </section>
-
-    <!-- Adresser (accentlinje) -->
-    <section class="section" id="addresses" data-reveal>
-      <h2 class="ornament">Adresser</h2>
-      <div class="addresses-grid">
-        <div class="address">
-          <h3>Kirke</h3>
-          <p>Christianskirken, 8000 Aarhus N</p>
-          <p><a class="link" target="_blank" rel="noopener" href="https://maps.google.com?q=Christianskirken Aarhus">Se på kort</a></p>
-        </div>
-        <div class="address">
-          <h3>Fest</h3>
-          <p>Varna Palæet, 8000 Aarhus C</p>
-          <p><a class="link" target="_blank" rel="noopener" href="https://maps.google.com?q=Varna Palæet Aarhus">Se på kort</a></p>
-        </div>
-      </div>
     </section>
 
     <!-- Afslutning -->

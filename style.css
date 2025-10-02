@@ -12,6 +12,7 @@
 /* ===== Base ===== */
 *{ box-sizing:border-box; }
 html,body{ height:100%; }
+html{ overflow-x:hidden; }  /* lås horisontal scroll */
 body{
   margin:0;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -20,8 +21,12 @@ body{
     radial-gradient(900px 420px at 10% -10%, #fff 0%, transparent 45%),
     radial-gradient(900px 420px at 110% -20%, #fff 0%, transparent 45%),
     var(--bg);
-  overflow-x:hidden;
+  overflow-x:hidden;             /* ekstra sikkerhed */
+  touch-action: pan-y;           /* undgå “skævt” scroll på mobil */
+  -webkit-text-size-adjust: 100%;/* iOS: undgå auto-zoom i tekst */
 }
+img, canvas, svg{ display:block; max-width:100%; height:auto; }
+
 h1,h2,h3{
   font-family: "Playfair Display", Georgia, serif;
   color: var(--accent);
@@ -51,7 +56,7 @@ a:hover{ text-decoration: underline; }
 .nav a{ font-weight:600; font-size:.95rem; padding:6px 10px; border-radius:8px; }
 .nav a:hover{ background: rgba(0,46,255,.07); text-decoration:none; }
 
-/* ===== HERO (uændret) ===== */
+/* ===== HERO ===== */
 .hero{
   position: relative;
   min-height: 100vh;
@@ -65,23 +70,27 @@ a:hover{ text-decoration: underline; }
 }
 #hearts{ position:absolute; inset:0; z-index:-1; }
 .hero-inner{ position:relative; z-index:1; text-align:center; padding: clamp(32px, 6vh, 60px) 4vw 10vh; }
-.brand{ font-size: clamp(2.2rem, 1.4rem + 3.6vw, 4rem); letter-spacing: .3px; }
+.brand{ font-size: clamp(2.4rem, 1.6rem + 3.8vw, 4.2rem); letter-spacing: .3px; }
+
+/* Større billede (mobil + desktop) */
 .hero-img{
-  width: min(92vw, 880px);
-  height:auto; display:block; margin: 12px auto 8px;
+  width: min(96vw, 980px);
+  height:auto; display:block; margin: 10px auto 8px;
   filter: drop-shadow(0 30px 50px rgba(0,0,0,.18));
   transform-origin: center bottom;
 }
+
+/* Countdown strip */
 .countdown-strip{
   display:flex; align-items:flex-end; justify-content:center;
   gap: clamp(12px, 2.6vw, 28px);
-  margin-top: -6px;  /* tættere på billedet */
+  margin-top: -6px;
   flex-wrap: wrap;
 }
 .count-item{ text-align:center; }
 .count-item .num{
   display:block; font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(2.2rem, 2.2rem + 2.2vw, 4rem);
+  font-size: clamp(2.4rem, 2.2rem + 2.4vw, 4.2rem);
   line-height: 1; color: var(--accent); letter-spacing: .5px;
   will-change: transform, opacity;
 }
@@ -92,7 +101,7 @@ a:hover{ text-decoration: underline; }
 .scroll-cue{ display:inline-block; margin-top: 10px; font-size: 2rem; color: var(--accent); animation: float 2.2s ease-in-out infinite; text-decoration:none; }
 @keyframes float{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(10px)} }
 
-/* ===== Sections (nyt, uden bokse) ===== */
+/* ===== Sections (luftigt) ===== */
 .section{
   width: min(100% - 32px, 980px);
   margin: 84px auto;
@@ -100,7 +109,7 @@ a:hover{ text-decoration: underline; }
   position:relative;
 }
 
-/* Overskrift ornament (fine linjer til siderne) */
+/* Ornament-linjer ved overskrifter */
 .ornament{
   position: relative;
   display:inline-block;
@@ -116,13 +125,13 @@ a:hover{ text-decoration: underline; }
 .ornament::before{ right: 100%; margin-right: 12px; }
 .ornament::after{ left: 100%; margin-left: 12px; }
 
-/* Info: to kolonner med diskret midter-divider (ikke kasse) */
+/* Info: to kolonner med tynd midter-divider */
 .info-grid{
   margin-top: 20px;
   display:grid; gap: 24px;
   grid-template-columns: repeat(2, minmax(0,1fr));
   background:
-    linear-gradient(to right, transparent 49.5%, rgba(0,0,0,.06) 50%, transparent 50.5%); /* tynd midterlinje */
+    linear-gradient(to right, transparent 49.5%, rgba(0,0,0,.06) 50%, transparent 50.5%);
   padding: 6px 0;
 }
 .info-item h3{
@@ -146,29 +155,6 @@ a:hover{ text-decoration: underline; }
   margin-top: 8px;
 }
 .chip a{ color: inherit; text-decoration: underline; text-underline-offset: 2px; }
-
-/* Adresser med accentlinje */
-.addresses-grid{
-  margin-top: 18px;
-  display:grid; gap: 20px;
-  grid-template-columns: repeat(2, minmax(0,1fr));
-}
-.address{
-  text-align:left;
-  padding: 12px 14px 12px 18px;
-  border-left: 3px solid var(--accent);
-  background:
-    radial-gradient(350px 160px at 0% 0%, rgba(0,46,255,.06), transparent 60%);
-  border-radius: 10px;
-}
-.address h3{
-  font-family: "Playfair Display", Georgia, serif;
-  color: var(--ink);
-  margin-bottom: 6px;
-}
-@media (max-width: 740px){
-  .addresses-grid{ grid-template-columns: 1fr; }
-}
 
 /* Button */
 .button{

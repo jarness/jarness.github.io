@@ -32,7 +32,7 @@ navObserver.observe(hero);
 if (window.gsap) {
   gsap.registerPlugin(ScrollTrigger);
   gsap.to('.hero-img', {
-    scale: 0.96,
+    scale: 0.965,
     y: 18,
     ease: 'none',
     scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
