@@ -25,7 +25,7 @@ const navObserver = new IntersectionObserver(entries=>{
     if(entry.isIntersecting){ nav.classList.remove('show'); }
     else { nav.classList.add('show'); }
   });
-}, { rootMargin: '-60px 0px 0px 0px', threshold: 0 });
+}, { rootMargin: '-60px 0px 0px 0px' });
 navObserver.observe(hero);
 
 // ===== Parallax på billedet (GSAP) =====
@@ -39,19 +39,23 @@ if (window.gsap) {
   });
 }
 
-// ===== Reveal af sektioner =====
+// ===== Reveal af sektioner (fail-safe) =====
 const reveals = document.querySelectorAll('[data-reveal]');
+// start skjult hvis JS virker
+reveals.forEach(el => el.classList.add('hidden'));
+
 if (window.gsap) {
   reveals.forEach(el=>{
     gsap.fromTo(el,{ autoAlpha: 0, y: 24 },{ autoAlpha: 1, y: 0, duration: 0.8, ease: 'power2.out',
-      scrollTrigger: { trigger: el, start: 'top 80%' }});
+      scrollTrigger: { trigger: el, start: 'top 80%' },
+      onStart: ()=> el.classList.remove('hidden')
+    });
   });
 } else {
   const io = new IntersectionObserver((entries, obs)=>{
     entries.forEach(en=>{
       if(en.isIntersecting){
-        en.target.style.opacity = 1;
-        en.target.style.transform = 'translateY(0)';
+        en.target.classList.remove('hidden');
         obs.unobserve(en.target);
       }
     });
@@ -59,12 +63,11 @@ if (window.gsap) {
   reveals.forEach(el=> io.observe(el));
 }
 
-// ===== Hearts canvas (spawn med det samme i hele højden) =====
+// ===== Hearts canvas =====
 (function hearts(){
   const c = document.getElementById('hearts');
   const ctx = c.getContext('2d');
   let W,H, DPR = window.devicePixelRatio || 1;
-
   const hearts = [];
   const R = (a,b)=> a + Math.random()*(b-a);
 
@@ -108,7 +111,7 @@ if (window.gsap) {
   requestAnimationFrame(tick);
 })();
 
-// ===== Countdown (strip) med tick-anim =====
+// ===== Countdown =====
 const target = new Date('Jan 10, 2026 13:00:00').getTime();
 const ids = ['days','hours','minutes','seconds'];
 const prev = { days:null, hours:null, minutes:null, seconds:null };
