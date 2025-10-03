@@ -11,7 +11,7 @@
 /* ===== Base ===== */
 *{ box-sizing:border-box; }
 html,body{ height:100%; }
-html{ overflow-x:hidden; }
+html{ overflow-x:hidden; } /* lås horisontal scroll */
 body{
   margin:0;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -20,8 +20,8 @@ body{
     radial-gradient(900px 420px at 10% -10%, #fff 0%, transparent 45%),
     radial-gradient(900px 420px at 110% -20%, #fff 0%, transparent 45%),
     var(--bg);
-  overflow-x:hidden;
-  touch-action: pan-y;
+  overflow-x:hidden;             /* ekstra sikkerhed */
+  touch-action: pan-y;           /* undgå “skævt” scroll på mobil */
   -webkit-text-size-adjust: 100%;
 }
 img, canvas, svg{ display:block; max-width:100%; height:auto; }
@@ -63,17 +63,16 @@ a:hover{ text-decoration: underline; }
   overflow:hidden; isolation:isolate;
 }
 .hero-gradient{
-  position:absolute; inset:0;
-  z-index:0;
+  position:absolute; inset:0; z-index:0;
+  background: radial-gradient(1200px 500px at 50% -10%, rgba(0,46,255,.08), transparent 60%),
+              radial-gradient(1000px 400px at 100% 10%, rgba(0,46,255,.06), transparent 60%);
 }
 #hearts{
-  position:absolute; inset:0;
-  z-index:1;
+  position:absolute; inset:0; z-index:1;
   pointer-events:none;
 }
 .hero-inner{
-  position:relative;
-  z-index:2;
+  position:relative; z-index:2;
   text-align:center;
   padding: clamp(32px, 6vh, 60px) 4vw 10vh;
 }
@@ -82,9 +81,7 @@ a:hover{ text-decoration: underline; }
 /* Større billede */
 .hero-img{
   width: min(96vw, 980px);
-  height:auto;
-  display:block;
-  margin: 10px auto 8px;
+  height:auto; display:block; margin: 10px auto 8px;
   filter: drop-shadow(0 30px 50px rgba(0,0,0,.18));
   transform-origin: center bottom;
 }
@@ -98,8 +95,7 @@ a:hover{ text-decoration: underline; }
 }
 .count-item{ text-align:center; }
 .count-item .num{
-  display:block;
-  font-family: "Playfair Display", Georgia, serif;
+  display:block; font-family: "Playfair Display", Georgia, serif;
   font-size: clamp(2.4rem, 2.2rem + 2.4vw, 4.2rem);
   line-height: 1; color: var(--accent);
 }
@@ -107,7 +103,7 @@ a:hover{ text-decoration: underline; }
 @keyframes tick{ from{transform:translateY(-8px);opacity:.6} to{transform:translateY(0);opacity:1} }
 .count-item small{ display:block; margin-top: 4px; color: var(--muted); font-weight:600; }
 .sep{ color: var(--muted); font-size: clamp(1.2rem, 1rem + 1.6vw, 2rem); line-height: 1.2; transform: translateY(-6px); }
-.scroll-cue{ display:inline-block; margin-top: 10px; font-size: 2rem; color: var(--accent); animation: float 2.2s ease-in-out infinite; }
+.scroll-cue{ display:inline-block; margin-top: 10px; font-size: 2rem; color: var(--accent); animation: float 2.2s ease-in-out infinite; text-decoration:none; }
 @keyframes float{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(10px)} }
 
 /* ===== Sections ===== */
@@ -159,7 +155,7 @@ a:hover{ text-decoration: underline; }
   border-radius: 999px;
   background: rgba(0,46,255,.08);
   color: var(--accent); font-weight:700;
-  box-shadow: 0 8px 18px rgba(0,0,0,.12);
+  box-shadow: 0 8px 18px rgba(0,46,255,.12);
   margin-top: 8px;
 }
 .chip a{ color: inherit; text-decoration: underline; text-underline-offset: 2px; }
@@ -188,13 +184,15 @@ a:hover{ text-decoration: underline; }
 }
 .sign{
   font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(1.2rem, 1rem + 1.2vw, 1.6rem);
+  font-size: clamp(0.8rem, 0.6rem + 0.8vw, 1.2rem);
   margin-top:.6rem;
 }
 
-/* ===== Reveal fail-safe ===== */
+/* ===== Reveal: fail-safe (synlig som default) ===== */
 [data-reveal]{
   opacity:1; transform:none;
   transition: opacity .8s ease, transform .8s ease;
 }
-[data-reveal].hidden{ opacity:0; transform: translateY(24px); }
+[data-reveal].hidden{
+  opacity:0; transform: translateY(24px);
+}

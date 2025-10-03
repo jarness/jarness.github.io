@@ -25,12 +25,14 @@
 
   <!-- HERO -->
   <header class="hero" id="top">
+    <div class="hero-gradient"></div>
     <canvas id="hearts" aria-hidden="true"></canvas>
+
     <div class="hero-inner">
       <h1 class="brand">Johanna & Joachim</h1>
 
-      <!-- Større billede -->
-      <img class="hero-img" src="images/invitation.PNG" alt="Johanna & Joachim – invitation" />
+      <!-- Større billede, eager for hurtig render -->
+      <img class="hero-img" src="images/invitation.PNG" alt="Johanna & Joachim – invitation" loading="eager" />
 
       <!-- Countdown (strip uden bokse) -->
       <section class="countdown-strip" id="countdown">
@@ -45,7 +47,6 @@
 
       <a class="scroll-cue" href="#info" aria-label="Scroll videre">▾</a>
     </div>
-    <div class="hero-gradient"></div>
   </header>
 
   <main>
@@ -72,20 +73,23 @@
     <section class="section" id="wishlist" data-reveal>
       <h2 class="ornament">Ønskeliste</h2>
       <p> </p>
-      <a class="button" href="https://onskeskyen.dk/liste/DIT-LINK" target="_blank" rel="noopener">Se ønskelisten</a>
+      <a class="button" href="https://onskeskyen.dk/wishlists/xzijB5g6EAEXTggl" target="_blank" rel="noopener">Klik her</a>
     </section>
 
-    <!-- Toastmaster -->
-    <section class="section" id="toastmaster" data-reveal>
-      <h2 class="ornament">Taler & underholdning</h2>
-      <p>Ønsker du at holde tale eller lave indslag, så kontakt venligst vores toastmaster:</p>
-      <p class="chip">
-        Jakob Sommer Kiel – <a href="tel:+45xxxxxxxx">xx xx xx xx</a>
-      </p>
-    </section>
+  <!-- Toastmaster -->
+  <section class="section" id="toastmaster" data-reveal>
+    <h2 class="ornament">Taler & underholdning</h2>
+    <p>Ønsker du at holde tale eller lave indslag, så kontakt venligst vores toastmaster:</p>
+    <p class="chip">
+      <a href="mailto:jakobkiel@gmail.com?subject=Bryllup%20-%20tale%20eller%20indslag&body=Hej%20Jakob%2C%0A%0AJeg%20vil%20gerne%20melde%20mig%20til%20tale%2Funderholdning.%0A%0AMvh%0A">
+        jakobkiel@gmail.com
+      </a>
+    </p>
+  </section>
+
 
     <!-- Afslutning -->
-    <section class="section closing" data-reveal>
+    <section class="section" data-reveal>
       <h2 class="ornament">Vi glæder os til at fejre dagen med jer!</h2>
       <p class="sign">Kærlige hilsner<br>Johanna & Joachim</p>
     </section>
