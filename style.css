@@ -88,6 +88,13 @@ a:hover{ text-decoration: underline; }
   transform-origin: center bottom;
 }
 
+/* På mobil: giv billedet lidt mere fylde */
+@media (max-width: 740px) {
+  .hero-img {
+    width: min(100vw, 720px); /* fylder lidt mere på små skærme */
+  }
+}
+
 /* Countdown strip */
 .countdown-strip{
   display:flex; align-items:flex-end; justify-content:center;
